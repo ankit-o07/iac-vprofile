@@ -45,15 +45,15 @@ jobs:
         id: fmt
         run: terraform fmt -check 
 
-      - name: "Terraform validate"
+      - name: Terraform validate
         id: validate
         run: terraform validate 
       
-      - name: "Terraform plan status"
+      - name: Terraform plan 
         id: plan 
-        run: terraform plan -out=tfplan -input=false -out planfile
+        run: terraform plan -no-color -input=false -out planfile
         continue-on-error: true
       
-      - name: terraform plan 
+      - name: terraform plan status
         if: steps.plan.outcome == 'failure'
         run: exit 1
